@@ -1,0 +1,43 @@
+
+import React from 'react';
+import { connect } from 'react-redux'; // connect connects you component to the redux store
+import { Link } from 'react-router-dom';
+import { getFilteredPosts } from '../selectors/posts';
+
+// Used in DashBoardPage
+const PostList = (props) => {
+   return (
+      <div>
+         {
+         props.posts.length === 0 ? (
+            <div>
+               No posts
+            </div>
+         ) : (
+         <div>
+         {
+            props.posts.map((post) => {
+               return (
+                  <Link to={`/edit/${post.id}`} key={post.id}>
+                     <div key={post.id}>
+                        <span>{post.title}</span>
+                     </div>            
+                  </Link>
+               );
+            })
+         }
+         </div>
+         )
+         }
+      </div>
+   );
+}
+
+const mapStateToProps = (state) => {
+   const selectPosts = getFilteredPosts(state.posts, state.filters);
+   return {
+      posts: selectPosts
+   }
+}
+
+export default connect(mapStateToProps)(PostList);

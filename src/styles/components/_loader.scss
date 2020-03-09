@@ -1,0 +1,14 @@
+
+.loader {
+   display: flex;
+   justify-content: center; /* align horizontally (along with height: 100vh) */
+   height: 100vh; /* set to 100% of viewport height */
+
+   align-items: center; /* align vertically (along with width: 100vw) */
+   width: 100vw; /* set to 100% of viewport width */
+}
+
+.loader__image {
+   height: 6rem;
+   width: 6rem;
+}
