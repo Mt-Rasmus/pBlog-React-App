@@ -1,5 +1,6 @@
 
 import React from 'react';
+import moment from 'moment';
 
 export default class PostForm extends React.Component {
    // local component state:
@@ -8,6 +9,7 @@ export default class PostForm extends React.Component {
       this.state = {
          title: props.post ? props.post.title: '',
          body: props.post ? props.post.body: '',
+         postTime: props.post ? moment(props.post.postTime) : moment(),
          error: ''   
       }
    }
@@ -33,7 +35,8 @@ export default class PostForm extends React.Component {
       else {
          this.props.onSubmit({ // calling the function passed in as prop
             title: this.state.title,
-            body: this.state.body
+            body: this.state.body,
+            postTime: moment().valueOf()
          });
       }
    }

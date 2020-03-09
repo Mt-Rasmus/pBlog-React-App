@@ -5,3 +5,16 @@ export const addSearchFilter = (searchString = '') => {
       searchString
    })
 }
+
+export const sortByTitle = () => {
+   return ({
+      type: 'SORT_BY_TITLE'
+   })
+}
+
+export const sortByTime = () => {
+   return ({
+      type: 'SORT_BY_TIME'
+   })
+}
+

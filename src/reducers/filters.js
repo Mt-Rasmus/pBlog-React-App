@@ -8,6 +8,16 @@ const filtersReducer = (state = filtersDefaultState, action) => {
             ...state,
             searchString: action.searchString
          }
+      case 'SORT_BY_TITLE':
+         return {
+            ...state,
+            sortBy: 'title'
+         }
+      case 'SORT_BY_TIME':
+         return {
+            ...state,
+            sortBy: 'time'
+            }         
       default:
          return state;
    }

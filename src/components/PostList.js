@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux'; // connect connects you component to the redux store
 import { Link } from 'react-router-dom';
 import { getFilteredPosts } from '../selectors/posts';
+import moment from 'moment';
 
 // Used in DashBoardPage
 const PostList = (props) => {
@@ -21,6 +22,7 @@ const PostList = (props) => {
                   <Link to={`/edit/${post.id}`} key={post.id}>
                      <div key={post.id}>
                         <span>{post.title}</span>
+                        <span>{moment(post.postTime).format('MMMM Do YYYY, h:mm:ss a')}</span>
                      </div>            
                   </Link>
                );

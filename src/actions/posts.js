@@ -14,9 +14,10 @@ export const initAddPost = (postData = {}) => {
       const uid = getState().auth.uid;
       const {
          title = '',
-         body = ''
+         body = '',
+         postTime = 0
       } = postData; // Destructuring postData. Default values above
-      const post = { title, body };
+      const post = { title, body, postTime };
 
       return database.ref(`users/${uid}/posts`).push(post).then((ref) => { // 1. add to database
          dispatch(addPost({ // 2. add to redux store (after .then())

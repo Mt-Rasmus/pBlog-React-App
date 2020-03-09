@@ -13,7 +13,6 @@ export const Header = ({ startLogout }) => ( // props gets passed in, so just de
             <button className="button button--link" onClick={startLogout}>Logout</button>
          </div>      
       </div>
-
    </header>
 );
 
