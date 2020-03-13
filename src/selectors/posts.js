@@ -10,9 +10,11 @@ export const getFilteredPosts = (posts, { searchString, sortBy }) => {
       if (sortBy === 'title') {
          return a.title > b.title ? 1 : -1;
       } else if (sortBy === 'time') {
-         console.log(a.postTime);
-            return -1;
-         //return a.postTime < b.postTime ? 1 : -1;
+         return a.postTime < b.postTime ? 1 : -1;
       }
    });
+}
+
+export const getPostById = (posts, id) => {
+   return posts.find(post => post.id === id);
 }

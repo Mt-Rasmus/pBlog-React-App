@@ -36,10 +36,10 @@ const PostList = (props) => {
 }
 
 const mapStateToProps = (state) => {
-   const selectPosts = getFilteredPosts(state.posts, state.filters);
+   
    return {
-      posts: selectPosts
-   }
+      posts: getFilteredPosts(state.posts, state.filters)
+   } 
 }
 
 export default connect(mapStateToProps)(PostList);

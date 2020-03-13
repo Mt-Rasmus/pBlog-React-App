@@ -3,6 +3,7 @@ import React from 'react';
 import PostForm from './PostForm';
 import { initDeletePost, initEditPost } from '../actions/posts';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export class EditPostPage extends React.Component {
 
@@ -19,6 +20,10 @@ export class EditPostPage extends React.Component {
    render() {
       return (
          <div>
+         {/*console.log(window.location.pathname.split('/edit/-')[1])*/}
+            <Link to={`/read/${this.props.post.id}`} key={this.props.post.id}>
+               <button>RIGHT HEA</button>
+            </Link>
             <PostForm post={this.props.post} onSubmit={this.onSubmit}/>
             <button onClick={this.onDelete}>Delete post</button>
          </div>

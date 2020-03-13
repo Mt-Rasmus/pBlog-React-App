@@ -6,6 +6,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import LoginPage from '../components/LoginPage';
 import AddPostPage from '../components/AddPostPage';
 import EditPostPage from '../components/EditPostPage';
+import ReadPostPage from '../components/ReadPostPage';
 import { createBrowserHistory } from 'history'; // needed to access history for non routed components
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -21,6 +22,7 @@ const AppRouter = () => (
             <PrivateRoute path="/dashboard" component={DashboardPage}/>
             <PrivateRoute path="/addpost" component={AddPostPage}/>
             <PrivateRoute path="/edit/:id" component={EditPostPage}/>
+            <PrivateRoute path="/read/:id" component={ReadPostPage}/>
             <Route component={NotFoundPage}/>
          </Switch>
       </div>
