@@ -1,25 +1,54 @@
 
 import React from 'react';
-import { connect } from 'react-redux';
 import { getPostById } from '../selectors/posts';
 
-const ReadPostPage = (props) => {
-   return (
-      <div>
-         <h1>{console.log('asdasd: ', props.post)}</h1>
-         <h1>{props.post.title}</h1>
-         <h3>{props.post.body}</h3>
-      </div>
-   );
-}
+class ReadPostPage extends React.Component {
+   _isMounted = false;
+   state = {
+      externalData: null
+   }
 
-const mapStateToProps = (state) => {
-   const postId = window.location.pathname.split('/read/')[1];
-   console.log(postId);
-   console.log(state);
-   return {
-      post: getPostById(state.posts, postId)
+   componentDidMount() {
+      this._isMounted = true;
+      const postId = window.location.pathname.split('/read/')[1];
+      this._asyncRequest = getPostById(postId).then(
+         externalData => {
+            this._asyncRequest = null;
+            if(this._isMounted) {
+               this.setState({externalData});
+            }
+         }
+      )
+   }
+
+   componentWillUnmount() {
+      this._isMounted = false;
+   }
+
+   render() {
+      if(this._isMounted) {
+         if(!this.state.externalData) {
+            console.log('No such post exists');
+            return (
+               <div>
+                  <h3> No post found </h3>
+               </div>
+            )            
+         }
+         else {
+            return (
+               <div>
+                  <h1>{this.state.externalData.title}</h1>
+               </div>
+            )
+         }
+      }
+      else {
+         return (
+            <div/>
+         )
+      }
    }
 }
 
-export default connect(mapStateToProps)(ReadPostPage);
+export { ReadPostPage as default }

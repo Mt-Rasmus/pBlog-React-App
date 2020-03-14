@@ -1,4 +1,8 @@
 
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/database'
+
 export const getFilteredPosts = (posts, { searchString, sortBy }) => {
    return posts.filter((post) => {
       if(searchString)
@@ -15,6 +19,17 @@ export const getFilteredPosts = (posts, { searchString, sortBy }) => {
    });
 }
 
-export const getPostById = (posts, id) => {
-   return posts.find(post => post.id === id);
+export const getPostById = (id) => {
+      //const uid = firebase.auth().currentUser.uid;
+      const uid = 'Kn5eD4Dv5NYgXaD61wu2rygqQBo1';
+      console.log('uid = ' + uid);
+      const database = firebase.database();
+      return database.ref(`users/${uid}/posts/${id}`).once('value').then((snapshot) => {
+         console.log("snapshot val = ", snapshot.val());
+         return snapshot.val();
+      });
 }
+
+// export const getPostById = (posts, id) => {
+//    return posts.find(post => post.id === id);
+// }

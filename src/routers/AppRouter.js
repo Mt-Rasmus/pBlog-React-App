@@ -19,10 +19,10 @@ const AppRouter = () => (
       <div>
          <Switch> {/* Only the first comp with a matching path to current URL will be rendererd */}
             <PublicRoute path="/" component={LoginPage} exact={true}/>             
-            <PrivateRoute path="/dashboard" component={DashboardPage}/>
+            <PrivateRoute path="/dashboard" component={DashboardPage} read={true}/>
             <PrivateRoute path="/addpost" component={AddPostPage}/>
             <PrivateRoute path="/edit/:id" component={EditPostPage}/>
-            <PrivateRoute path="/read/:id" component={ReadPostPage}/>
+            <PublicRoute path="/read/:id" component={ReadPostPage} />
             <Route component={NotFoundPage}/>
          </Switch>
       </div>
