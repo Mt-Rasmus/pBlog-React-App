@@ -19,9 +19,10 @@ const PostList = (props) => {
          {
             props.posts.map((post) => {
                return (
-                  <Link to={`/edit/${post.id}`} key={post.id}>
+                  <Link to={`/edit/${post.pub_id}`} key={post.pub_id}>
                      <div key={post.id}>
                         <span>{post.title}</span>
+                        <span>{post.pub_id}</span>
                         <span>{moment(post.postTime).format('MMMM Do YYYY, h:mm:ss a')}</span>
                      </div>            
                   </Link>
@@ -35,8 +36,7 @@ const PostList = (props) => {
    );
 }
 
-const mapStateToProps = (state) => {
-   
+const mapStateToProps = (state) => {  
    return {
       posts: getFilteredPosts(state.posts, state.filters)
    } 

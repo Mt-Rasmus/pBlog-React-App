@@ -13,7 +13,7 @@ export const PublicRoute = ({
    ...rest // the rest of the props passed in from AppRouter.js. such as exact, path, etc.
 }) => (
    <Route {...rest} component={(props) => (
-      isAuthenticated ? (
+      isAuthenticated && !rest.read ? (
          <Redirect to="/dashboard" />
       ) : (
          <Component {...props} />

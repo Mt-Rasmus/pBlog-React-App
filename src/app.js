@@ -32,7 +32,6 @@ ReactDOM.render(<LoadingPage />, document.getElementById("app"));
 
 firebase.auth().onAuthStateChanged((user) => {
    const postId = window.location.pathname.split('/')[1];
-   console.log('postID =====', postId)
    if (user) {
       // we do the dispatch here instead of in startLogin
       // so that after a refresh and the user is implicitly logged in already
@@ -47,7 +46,6 @@ firebase.auth().onAuthStateChanged((user) => {
    } else {
       store.dispatch(logout());
       renderApp();
-      console.log('backing in app.js');
       if(postId !== 'read')
          history.push('/');
    }

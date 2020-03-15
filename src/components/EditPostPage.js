@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export class EditPostPage extends React.Component {
-
+   
    onDelete = () => {
       this.props.initDeletePost(this.props.post);
       this.props.history.push('/');
@@ -20,8 +20,7 @@ export class EditPostPage extends React.Component {
    render() {
       return (
          <div>
-         {/*console.log(window.location.pathname.split('/edit/-')[1])*/}
-            <Link to={`/read/${this.props.post.id}`} key={this.props.post.id}>
+            <Link to={`/read/${this.props.post.pub_id}`} key={this.props.post.pub_id}>
                <button>RIGHT HEA</button>
             </Link>
             <PostForm post={this.props.post} onSubmit={this.onSubmit}/>
@@ -32,8 +31,11 @@ export class EditPostPage extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
+   console.log("state = ", state);
+   console.log("props.match.params.id = ", props.match.params.id);
+
    return {
-      post: state.posts.find((post) => post.id === props.match.params.id) /* param defined in AppRouter.js */
+      post: state.posts.find((post) => post.pub_id === props.match.params.id) /* param defined in AppRouter.js */
    }
 }
 

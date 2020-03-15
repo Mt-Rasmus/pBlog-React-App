@@ -7,8 +7,8 @@ export default class PostForm extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
-         title: props.post ? props.post.title: '',
-         body: props.post ? props.post.body: '',
+         title: props.post ? props.post.title : '',
+         body: props.post ? props.post.body : '',
          postTime: props.post ? moment(props.post.postTime) : moment(),
          error: ''   
       }
@@ -17,7 +17,7 @@ export default class PostForm extends React.Component {
    setTitle = (e) => {
       e.preventDefault();
       const title = e.target.value;
-      this.setState(() => ({ title }));  
+      this.setState(() => ({ title }));
    }
 
    setBody = (e) => {
@@ -28,11 +28,12 @@ export default class PostForm extends React.Component {
 
    onSubmit = (e) => {
       e.preventDefault();
-
+      
       if(!this.state.title) {
          this.setState(() => ({ error: 'Please provide a title' }))
       }
       else {
+         console.log('PostForm');
          this.props.onSubmit({ // calling the function passed in as prop
             title: this.state.title,
             body: this.state.body,

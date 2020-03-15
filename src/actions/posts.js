@@ -2,6 +2,7 @@
 import database from '../firebase/firebase';
 
 const addPost = (post) => {
+   console.log('UPHERE = ', post);
    return ({
       type: 'ADD_POST',
       post
@@ -10,20 +11,22 @@ const addPost = (post) => {
 
 export const initAddPost = (postData = {}) => {
    return (dispatch, getState) => { 
-
       const uid = getState().auth.uid;
       const {
          title = '',
          body = '',
          postTime = 0
       } = postData; // Destructuring postData. Default values above
-      const post = { title, body, postTime };
-
-      return database.ref(`users/${uid}/posts`).push(post).then((ref) => { // 1. add to database
-         dispatch(addPost({ // 2. add to redux store (after .then())
-            id: ref.key,
-            ...post
-         }))
+      const pub_post = { title, body, postTime };
+      return database.ref(`blogposts`).push(pub_post).then((ref) => { // 1. add to database (publicly viewable blogposts)
+            const pub_id = ref.key;  
+            const post = { title, body, postTime, pub_id };     
+            return database.ref(`users/${uid}/posts`).push(post).then((ref) => { // 1. add to database
+            dispatch(addPost({ // 2. add to redux store (after .then())
+               id: ref.key,
+               ...post
+            }))
+         })
       })
    }
 }
@@ -39,7 +42,9 @@ export const initDeletePost = (post = {}) => {
    return (dispatch, getState) => {
       const uid = getState().auth.uid;
       return database.ref(`users/${uid}/posts/${post.id}`).remove().then(() => {
-         dispatch(deletePost(post))
+         return database.ref(`blogposts/${post.pub_id}`).remove().then(() => {
+            dispatch(deletePost(post))
+         })
       })
    }
 }
@@ -56,7 +61,9 @@ export const initEditPost = (post = {}, updates) => {
    return (dispatch, getState) => {
       const uid = getState().auth.uid;
       return database.ref(`users/${uid}/posts/${post.id}`).update(updates).then(() => {
-         dispatch(EditPost(post, updates))
+         return database.ref(`blogposts/${post.pub_id}`).update(updates).then(() => {
+            dispatch(EditPost(post, updates))
+         })
       })
    }
 }
