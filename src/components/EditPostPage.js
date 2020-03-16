@@ -4,6 +4,7 @@ import PostForm from './PostForm';
 import { initDeletePost, initEditPost } from '../actions/posts';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Clipboard from 'react-clipboard.js';
 
 export class EditPostPage extends React.Component {
    
@@ -18,11 +19,16 @@ export class EditPostPage extends React.Component {
    }
 
    render() {
+      const link = window.location.href.split('/edit')[0] + `/read/${this.props.post.pub_id}`;
       return (
          <div>
+            {/*<Link to={`/read/${this.props.post.pub_id}`} key={this.props.post.pub_id}><p>{link}</p></Link>*/}
             <Link to={`/read/${this.props.post.pub_id}`} key={this.props.post.pub_id}>
-               <button>RIGHT HEA</button>
+               <button>View published blog post</button>
             </Link>
+            <Clipboard data-clipboard-text={link}>
+               Copy blog page link to clipboard
+            </Clipboard>
             <PostForm post={this.props.post} onSubmit={this.onSubmit}/>
             <button onClick={this.onDelete}>Delete post</button>
          </div>
@@ -31,9 +37,6 @@ export class EditPostPage extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-   console.log("state = ", state);
-   console.log("props.match.params.id = ", props.match.params.id);
-
    return {
       post: state.posts.find((post) => post.pub_id === props.match.params.id) /* param defined in AppRouter.js */
    }

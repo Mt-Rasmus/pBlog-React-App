@@ -51,5 +51,3 @@ firebase.auth().onAuthStateChanged((user) => {
    }
 });
 
-//require("history").createBrowserHistory
-
