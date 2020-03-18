@@ -44,6 +44,20 @@ module.exports = (env) => {
                   }
                ]
             })
+         }, {
+            test: /\.(png|jpe?g|gif)$/i,
+            use: [
+              {
+                loader: 'url-loader'
+              },
+            ],            
+         }, {
+            test: /\.(jpg|png|gif|svg|pdf|ico)$/,
+            use: [
+              {
+                loader: 'file-loader'
+              },
+            ],            
          }]
       },
       plugins: [

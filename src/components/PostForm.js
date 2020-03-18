@@ -33,7 +33,6 @@ export default class PostForm extends React.Component {
          this.setState(() => ({ error: 'Please provide a title' }))
       }
       else {
-         console.log('PostForm');
          this.props.onSubmit({ // calling the function passed in as prop
             title: this.state.title,
             body: this.state.body,
@@ -46,10 +45,24 @@ export default class PostForm extends React.Component {
       return (
          <div>
             {this.state.error}
-            <form onSubmit={this.onSubmit}>
-               <input type="text" onChange={this.setTitle} value={this.state.title}/>
-               <textarea type="text" onChange={this.setBody} value={this.state.body}/>
-               <button>Submit post</button>
+            <form onSubmit={this.onSubmit} className="input-group-add-page">
+               <input 
+                  type="text" 
+                  onChange={this.setTitle} 
+                  value={this.state.title}
+                  className="text-input input-group__item"
+                  placeholder="Post Title"
+                  />
+               <textarea 
+                  type="text" 
+                  onChange={this.setBody} 
+                  value={this.state.body}
+                  className="textarea input-group__item"
+                  placeholder="Post Body"
+                  />
+               <div>
+                  <button className="button button--add-post">Submit</button>              
+               </div>
             </form>
          </div>   
       )

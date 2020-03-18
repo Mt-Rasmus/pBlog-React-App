@@ -12,7 +12,7 @@ export const getFilteredPosts = (posts, { searchString, sortBy }) => {
    })
    .sort((a,b) => {
       if (sortBy === 'title') {
-         return a.title > b.title ? 1 : -1;
+         return a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1;
       } else if (sortBy === 'time') {
          return a.postTime < b.postTime ? 1 : -1;
       }

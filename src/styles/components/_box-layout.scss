@@ -3,7 +3,8 @@
 
    /* this code runs in the browser (only has access to public dir) */
    /* '/' is the root of the web server (public folder) */
-   background: url('/images/bg.jpg');
+   /*background: url('/images/bg.jpg');*/
+   background-color: $off-white;
    background-size: cover;
    height: 100vh; /* set to 100% of viewport height */
    width: 100vw; /* set to 100% of viewport width */
@@ -18,6 +19,7 @@
    padding: $l-size $m-size;
    text-align: center;
    width: 25rem;
+   border-radius: 5px;
 }
 
 .box-layout__title {

@@ -1,6 +1,6 @@
 
 .header {
-   background: $medium-grey;
+   background: $off-white;
 }
 
 .header__content {
@@ -11,9 +11,36 @@
 }
 
 .header__title {
-   color: white;
+   color: $light-teal;
    text-decoration: none;
    h1 {
       margin: 0;
    }
+   /*border-bottom: 2px solid $light-teal;*/
+   &::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0.3rem;
+      background: $light-teal;
+      transition: width .3s;
+   }
+   
+   &:hover::after {
+      width: 100%;
+   }
 }
+
+
+ /*
+.underline--magical {
+   background-image: linear-gradient(120deg, $light-teal 0%, $light-teal 100%);
+   background-repeat: no-repeat;
+   background-size: 100% 0em;
+   background-position: 0 88%;
+   transition: background-size 0.2s ease-in;
+   &:hover {
+     background-size: 100% 8%;
+   }
+}
+*/

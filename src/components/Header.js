@@ -7,7 +7,7 @@ export const Header = ({ startLogout }) => ( // props gets passed in, so just de
    <header className="header">
       <div className="content-container">
          <div className="header__content">
-            <Link className="header__title" to="/dashboard">
+            <Link className="header__title underline--magical" to="/dashboard">
                <h1>pBlog</h1>
             </Link>
             <button className="button button--link" onClick={startLogout}>Logout</button>

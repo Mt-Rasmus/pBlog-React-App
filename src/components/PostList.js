@@ -7,14 +7,15 @@ import PostListItem from './PostListItem';
 // Used in DashBoardPage
 const PostList = (props) => {
    return (
-      <div>
+      <div className="content-container">
          {
          props.posts.length === 0 ? (
             <div>
                No posts
             </div>
          ) : (
-         <div>
+         <div className="list-body">
+            <h2 className="list-body__headline">Blog Posts</h2>
          {
             props.posts.map((post) => {
                return <PostListItem key={post.id} post={post} />

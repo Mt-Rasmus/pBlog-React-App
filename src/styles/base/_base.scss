@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 * {
    box-sizing: border-box;
@@ -5,11 +6,15 @@
 
 html {
    font-size: 62.5%; // Setting base pixelsize to 10, so 1.0rem = 10px
+   //overflow-y: scroll;
+   width:100vw;
+   overflow-x:hidden;
 }
 
 body {
    color: $dark-grey;
-   font-family: Helvetica, Arial, sans-serif;
+   /*font-family: Helvetica, Arial, sans-serif;*/
+   font-family: 'Montserrat', sans-serif;
    font-size: $m-size;
    line-height: 1.5;
 }

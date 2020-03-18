@@ -6,8 +6,8 @@ export const LoginPage = ({ startLogin }) => ( // destructuring startLogin from 
    <div className="box-layout">
       <div className="box-layout__box">
          <h1 className="box-layout__title">pBlog</h1>
-         <p>Write what you want. <br/>Easy, simple.</p>
-         <button className="button" onClick={startLogin}>Login with Google</button>
+         <p>Write what you want, <br/>and share what you want. <br/>Easy, simple.</p>
+         <button className="button button--add-post" onClick={startLogin}>Login with Google</button>
       </div>   
    </div>
 );

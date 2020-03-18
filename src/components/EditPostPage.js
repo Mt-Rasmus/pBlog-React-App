@@ -21,16 +21,24 @@ export class EditPostPage extends React.Component {
    render() {
       const link = window.location.href.split('/edit')[0] + `/read/${this.props.post.pub_id}`;
       return (
-         <div>
-            {/*<Link to={`/read/${this.props.post.pub_id}`} key={this.props.post.pub_id}><p>{link}</p></Link>*/}
-            <Link to={`/read/${this.props.post.pub_id}`} key={this.props.post.pub_id}>
-               <button>View published blog post</button>
+         <div className="content-container">
+            <Link 
+               to={`/read/${this.props.post.pub_id}`} 
+               key={this.props.post.pub_id}
+               className="icon-container"
+               >          
+               <img src={'/images/book.png'} className="icon"/>
+               <p>View published blog post</p>
             </Link>
-            <Clipboard data-clipboard-text={link}>
-               Copy blog page link to clipboard
+            <Clipboard 
+               data-clipboard-text={link} 
+               className="icon-container icon-container--clipboard"
+               >
+               <img src={'/images/clipboard.png'} className="icon"/>
+               <p>Copy blog page link to clipboard</p>
             </Clipboard>
             <PostForm post={this.props.post} onSubmit={this.onSubmit}/>
-            <button onClick={this.onDelete}>Delete post</button>
+            <button onClick={this.onDelete} className="button button--delete-post">Delete post</button>
          </div>
       )
    }

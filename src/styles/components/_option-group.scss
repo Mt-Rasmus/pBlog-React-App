@@ -1,0 +1,31 @@
+
+.option-group {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   margin: $s-size 0 $s-size 0;
+   @media (min-width: $desktop-breakpoint) { // for desktop (larger screens)
+      flex-direction: row;
+      //margin-bottom: $l-size;
+   }
+}
+
+.input-group {
+   @extend .option-group;
+   justify-content: center;
+}
+
+.input-group-add-page {
+   display: flex; 
+   flex-direction: column;  
+}
+
+.input-group__item {
+   margin-top: $s-size;
+   margin-right: $s-size;
+   @media (min-width: $desktop-breakpoint) { // for desktop (larger screens)
+      margin-bottom: 0;
+   }
+   outline: none;
+}
+

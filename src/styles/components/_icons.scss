@@ -1,0 +1,30 @@
+
+.icon-container {
+   display: flex;
+   text-decoration: none;
+   font-size: $font-size-small;
+   color: $dark-grey;
+}
+
+.icon {
+   width: 3rem;
+   height: auto;
+   margin-right: 1rem;
+   align-self: center;
+}
+
+.icon--read {
+   background-color: blue;
+}
+
+.icon--copy {
+   border: none;
+}
+
+.icon-container--clipboard {
+   border: none;
+   background: none;
+   padding: 0;
+   outline: none;
+   font-family: 'Montserrat', sans-serif;
+}

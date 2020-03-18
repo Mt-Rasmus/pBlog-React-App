@@ -1,6 +1,15 @@
 
+.button-container {
+   @media (min-width: $desktop-breakpoint) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;  
+   }
+}
+
 .button {
-   background: $blue;
+   background: $medium-teal;
+   border-radius: 3px;
    color: white;
    display: inline-block; /* vertical margin and padding gets taken into effect. default inline. */
    font-size: $font-size-large;
@@ -13,6 +22,27 @@
 
 .button--link { 
    background: none;
+   color: $dark-grey;
+   transition: all 0.15s ease-in-out;
+   &:hover { // same as .list-item:hover 
+      color: lighten($dark-grey, 40%); 
+   }
+}
+
+.button--add-post {
+   margin-top: $s-size;
+   transition: all 0.1s ease-in-out;
+   &:hover { // same as .list-item:hover 
+      background: lighten($medium-teal, 7%);
+   }
+}
+
+.button--delete-post {
+   margin-top: $s-size;
+   transition: all 0.1s ease-in-out;
+   &:hover { // same as .list-item:hover 
+      background: lighten($medium-teal, 7%);
+   } 
 }
 
 .button--secondary { /* button "modifier" (with two --) */

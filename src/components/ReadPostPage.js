@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { getPostById } from '../selectors/posts';
+import moment from 'moment';
 
 class ReadPostPage extends React.Component {
    _isMounted = false;
@@ -37,8 +38,15 @@ class ReadPostPage extends React.Component {
          }
          else {
             return (
-               <div>
+               <div className="content-container">
                   <h1>{this.state.externalData.title}</h1>
+                  <p>{this.state.externalData.body}</p>
+                  <div className="list-item__sub"> 
+                     <p className="list-item__sub-text"> Last Edited: </p>
+                     <p>
+                        {moment(this.state.externalData.postTime).format('MMMM Do YYYY, h:mm a')}
+                     </p>
+                  </div>                    
                </div>
             )
          }

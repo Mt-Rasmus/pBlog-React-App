@@ -1,13 +1,4 @@
 
-.list-header {
-   background: $off-white;
-   border: 1px solid darken($off-white, 7%);
-   color: $medium-grey;
-   display: flex;
-   justify-content: space-between;
-   padding: $s-size $m-size;
-}
-
 .list-body { /* In case list touch very bottom of page */
    margin-bottom: $m-size;
    @media (min-width: $desktop-breakpoint){ /* For desktop */
@@ -15,50 +6,48 @@
    }
 }
 
-.list-item {
-   border: 1px solid darken($off-white, 7%);
-   border-top: none;
-   color: $dark-grey;
-   display: flex;
-   flex-direction: column;
-   padding: $s-size $s-size;
-   text-decoration: none;
-   transition: background .3s ease;
-   &:hover { // same as .list-item:hover 
-      background: $off-white;
-   }
-   @media (min-width: $desktop-breakpoint){ /* For desktop */
-      align-items: center;
-      flex-direction: row;
-      justify-content: space-between;
-      padding: $m-size;
-   }
+.list-body__headline {
+   border-bottom: 1px solid darken($off-white, 6%);
+   margin-bottom: 0;
+   padding-bottom: $s-size;
+   font-size: $font-size-xl;
 }
 
-.list-item--message {
-   align-items: center; /* centers for desktop */
-   color: $grey;
-   justify-content: center;/* centers for mobile */
-   padding: $m-size;
-   &:hover {
-      background: none;
+.list-item {
+   border: 1px solid darken($off-white, 6%);
+   border-top: none;
+   text-decoration: none;
+   font-size: $font-size-large;
+   color: $dark-grey;
+   display: flex;
+   //flex-direction: column;
+   padding: $s-size $s-size;
+   transition: all 0.2s ease-in-out;
+
+   &:hover { // same as .list-item:hover 
+      background: lighten($off-white, 1%);
+      border-left: 0.5rem solid $light-teal;
    }
+
+}
+
+.list-item__content {
+   display: flex;
 }
 
 .list-item__title {
    margin: 0;
-   word-break: break-all; /* prevent edge case with extemely long unbroken strings */
+   font-size: $font-size-large;
+   word-break: break-all;
+   /*border-bottom: 2px solid $light-teal;*/
 }
 
-.list-item__sub-title {
-   color: $medium-grey;
+.list-item__sub {
+   color: $grey;
    font-size: $font-size-small;
+   display: flex;
 }
 
-.list-item__data {
-   margin: $s-size 0 0 0;
-   @media (min-width: $desktop-breakpoint) {
-      margin: 0;
-      padding-left: $s-size;
-   }
+.list-item__sub-text {
+   padding-right: 5px;
 }
