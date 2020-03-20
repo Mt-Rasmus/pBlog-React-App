@@ -15,36 +15,40 @@
    font-size: $font-size-large;
    font-weight: 300;
    padding: $s-size;
+   margin-top: $s-size;
    border: none;
    text-decoration: none;
    line-height: 1;
+   transition: all 0.1s ease-in-out;
 }
 
 .button--link { 
    background: none;
    color: $dark-grey;
    transition: all 0.15s ease-in-out;
-   &:hover { // same as .list-item:hover 
+   margin-top: 0;
+   &:hover {
       color: lighten($dark-grey, 40%); 
    }
 }
 
-.button--add-post {
-   margin-top: $s-size;
-   transition: all 0.1s ease-in-out;
+.button--standard {
    &:hover { // same as .list-item:hover 
       background: lighten($medium-teal, 7%);
    }
 }
 
-.button--delete-post {
-   margin-top: $s-size;
-   transition: all 0.1s ease-in-out;
-   &:hover { // same as .list-item:hover 
-      background: lighten($medium-teal, 7%);
-   } 
+.button--add {
+   margin-top: 0;
+   @media (min-width: $desktop-breakpoint){ /* For desktop */
+      padding: $s-size;
+   }
 }
 
-.button--secondary { /* button "modifier" (with two --) */
-   background: $grey;
+
+.button--delete-post {
+   background-color: $medium-grey;
+   &:hover { // same as .list-item:hover 
+      background: lighten($medium-grey, 7%);
+   } 
 }

@@ -1,6 +1,7 @@
 
 .header {
    background: $off-white;
+   border-bottom: 1px solid darken($off-white, 6%);
 }
 
 .header__content {

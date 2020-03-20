@@ -1,20 +1,43 @@
 
 .icon-container {
    display: flex;
+   align-items: left;
+   justify-content: center;
+   flex-direction: column;
+   padding-top: $m-size;
+   
+
+   @media (min-width: $desktop-breakpoint){ /* For desktop */
+      
+      align-items: center;
+      flex-direction: row;
+      
+   }
+}
+
+.icon-container-sub {
+   display: flex;
    text-decoration: none;
    font-size: $font-size-small;
    color: $dark-grey;
 }
 
+
 .icon {
    width: 3rem;
    height: auto;
-   margin-right: 1rem;
+   margin-right: 0.6rem;
    align-self: center;
+   transition: all 0.1s ease-in-out;
+   filter: brightness(87%);
+   &:hover {
+      filter: brightness(105%);
+   }
 }
 
-.icon--read {
-   background-color: blue;
+.icon--align {
+   display: flex;
+   align-self: center;
 }
 
 .icon--copy {
@@ -26,5 +49,8 @@
    background: none;
    padding: 0;
    outline: none;
-   font-family: 'Montserrat', sans-serif;
+}
+
+.icon-text {
+   padding-right: $m-size;
 }

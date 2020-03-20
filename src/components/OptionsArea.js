@@ -36,7 +36,7 @@ const OptionsArea = (props) => {
                </div>
             </div>
             <div className="button-container">
-               <NavLink className="button button--add-post" to="/addpost">
+               <NavLink className="button button--standard button--add" to="/addpost">
                   Add post           
                </NavLink>   
             </div>

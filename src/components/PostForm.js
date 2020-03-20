@@ -61,7 +61,7 @@ export default class PostForm extends React.Component {
                   placeholder="Post Body"
                   />
                <div>
-                  <button className="button button--add-post">Submit</button>              
+                  <button className="button button--standard">Submit</button>              
                </div>
             </form>
          </div>   

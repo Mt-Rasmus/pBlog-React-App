@@ -22,21 +22,29 @@ export class EditPostPage extends React.Component {
       const link = window.location.href.split('/edit')[0] + `/read/${this.props.post.pub_id}`;
       return (
          <div className="content-container">
-            <Link 
-               to={`/read/${this.props.post.pub_id}`} 
-               key={this.props.post.pub_id}
-               className="icon-container"
-               >          
-               <img src={'/images/book.png'} className="icon"/>
-               <p>View published blog post</p>
-            </Link>
-            <Clipboard 
-               data-clipboard-text={link} 
-               className="icon-container icon-container--clipboard"
-               >
-               <img src={'/images/clipboard.png'} className="icon"/>
-               <p>Copy blog page link to clipboard</p>
-            </Clipboard>
+            <div className="icon-container">
+               <div className="icon-container-sub">
+                  <Link 
+                     to={`/read/${this.props.post.pub_id}`} 
+                     key={this.props.post.pub_id}
+                     className="icon--align"
+                     >          
+                     <img src={'/images/book.png'} className="icon icon--read"/>              
+                  </Link>
+                  <p className="icon--align icon-text">View published blog post</p>            
+               </div>
+               <div className="icon-container-sub">
+                  <Clipboard 
+                     data-clipboard-text={link} 
+                     className="icon-container--clipboard icon--align"
+                     >
+                     <img src={'/images/clipboard.png'} className="icon"/>
+                  </Clipboard>
+                  <p className="icon--align icon-text">Copy blog page link to clipboard</p>
+               </div>            
+            </div>
+
+            <h2 className="page-header">Edit post</h2>
             <PostForm post={this.props.post} onSubmit={this.onSubmit}/>
             <button onClick={this.onDelete} className="button button--delete-post">Delete post</button>
          </div>

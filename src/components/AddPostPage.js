@@ -14,6 +14,7 @@ export class AddPostPage extends React.Component {
    render() {
       return (
          <div className="content-container">
+            <h2 className="page-header">Add post</h2>
             <PostForm 
                onSubmit={this.onSubmit} // passing above onSubmit method as prop to PostForm
             />          
