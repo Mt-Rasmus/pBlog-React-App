@@ -2,7 +2,6 @@
 import database from '../firebase/firebase';
 
 const addPost = (post) => {
-   console.log('UPHERE = ', post);
    return ({
       type: 'ADD_POST',
       post

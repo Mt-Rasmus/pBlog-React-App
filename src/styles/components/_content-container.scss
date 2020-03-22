@@ -6,3 +6,15 @@
    word-break: break-all;
 }
 
+.read-page-container {
+   padding: $s-size $l-size;
+   margin-right: $s-size;
+   word-break: break-word;
+   font-size: $font-size-medium;
+}
+
+.headline-container {
+   @extend .read-page-container;
+   font-size: $font-size-xxl;
+   margin: $xl-size 0 0 0;
+}

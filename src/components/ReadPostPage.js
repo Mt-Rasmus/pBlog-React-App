@@ -29,7 +29,6 @@ class ReadPostPage extends React.Component {
    render() {
       if(this._isMounted) {
          if(!this.state.externalData) {
-            console.log('No such post exists');
             return (
                <div>
                   <h3> No post found </h3>
@@ -37,11 +36,12 @@ class ReadPostPage extends React.Component {
             )            
          }
          else {
+            const adjustedHTMLstring = this.state.externalData.body.replace("<p></p>", "</br>");
             return (
                <div className="content-container">
-                  <h1>{this.state.externalData.title}</h1>
-                  <p>{this.state.externalData.body}</p>
-                  <div className="list-item__sub"> 
+                  <h1 className="headline-container">{this.state.externalData.title}</h1>
+                  <div className="read-page-container" dangerouslySetInnerHTML={{ __html: adjustedHTMLstring }}></div>
+                  <div className="list-item__sub read-page-container"> 
                      <p className="list-item__sub-text"> Last Edited: </p>
                      <p>
                         {moment(this.state.externalData.postTime).format('MMMM Do YYYY, h:mm a')}

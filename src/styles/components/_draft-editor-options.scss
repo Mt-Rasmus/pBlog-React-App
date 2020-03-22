@@ -1,0 +1,33 @@
+
+.style-button {
+   background: white;
+   border-radius: 3px;
+   color: $dark-grey;
+   display: inline-block; /* vertical margin and padding gets taken into effect. default inline. */
+   font-weight: 300;
+   padding: $xs-size;
+   margin: 0 $xxs-size $xxs-size 0;
+   border: 1px solid darken($off-white, 6%);
+   text-decoration: none;
+   line-height: 1;
+   transition: all 0.1s ease-in-out;
+   cursor: pointer;
+   &:hover { // same as .list-item:hover 
+      background-color: $light-grey;
+   }
+   @media (min-width: $desktop-breakpoint){ /* For desktop */
+      margin: 0 $xs-size $xs-size 0;
+   }
+}
+
+.style-button-activated {
+   background-color: $light-grey;
+}
+
+.style-button--inline {
+   margin-top: 0;
+}
+
+.RichEditor-controls {
+   user-select: none;
+}

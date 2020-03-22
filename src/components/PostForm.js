@@ -1,16 +1,24 @@
 
 import React from 'react';
 import moment from 'moment';
+import BlockStyleControls from './BlockStyleControls';
+import InlineStyleControls from './InlineStyleControls';
+import {Editor, EditorState, ContentState, RichUtils} from 'draft-js';
+import { convertToHTML } from 'draft-convert';
+import htmlToDraft from 'html-to-draftjs';
+
 
 export default class PostForm extends React.Component {
    // local component state:
    constructor(props) {
       super(props);
+      this.focus = () => this.refs.editor.focus();
       this.state = {
          title: props.post ? props.post.title : '',
          body: props.post ? props.post.body : '',
          postTime: props.post ? moment(props.post.postTime) : moment(),
-         error: ''   
+         error: '',
+         editorState: EditorState.createEmpty()
       }
    }
 
@@ -20,10 +28,18 @@ export default class PostForm extends React.Component {
       this.setState(() => ({ title }));
    }
 
-   setBody = (e) => {
-      e.preventDefault();
-      const body = e.target.value;
-      this.setState(() => ({ body }));    
+   setBody = editorState => {
+      this.setState({editorState});
+      const html = convertToHTML(this.state.editorState.getCurrentContent());
+      this.setState(() => ({ body: html })); 
+   }
+
+   componentDidMount = () => {
+      const blocksFromHtml = htmlToDraft(this.state.body);
+      const { contentBlocks, entityMap } = blocksFromHtml;
+      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+      const editorState = EditorState.createWithContent(contentState);
+      this.setState({ editorState });
    }
 
    onSubmit = (e) => {
@@ -32,7 +48,7 @@ export default class PostForm extends React.Component {
       if(!this.state.title) {
          this.setState(() => ({ error: 'Please provide a title' }))
       }
-      else {
+      else { 
          this.props.onSubmit({ // calling the function passed in as prop
             title: this.state.title,
             body: this.state.body,
@@ -41,7 +57,37 @@ export default class PostForm extends React.Component {
       }
    }
 
+   toggleBlockType = (blockType) => {
+		this.setBody(
+			RichUtils.toggleBlockType(
+				this.state.editorState,
+				blockType
+			));
+     }
+
+	toggleInlineStyle = (inlineStyle) => {
+		this.setBody(
+			RichUtils.toggleInlineStyle(
+				this.state.editorState,
+				inlineStyle
+			)
+		);
+	}
+
+   getBlockStyle = (block) => {
+      switch (block.getType()) {
+         case 'blockquote': return 'RichEditor-blockquote';
+         case 'new-block-type-name':
+            return {
+               component: CustomComponent,
+               editable: false,
+            }
+         default: return null;
+      }
+   }
+
    render() {
+      const {editorState} = this.state;
       return (
          <div>
             {this.state.error}
@@ -52,14 +98,24 @@ export default class PostForm extends React.Component {
                   value={this.state.title}
                   className="text-input input-group__item"
                   placeholder="Post Title"
-                  />
-               <textarea 
-                  type="text" 
-                  onChange={this.setBody} 
-                  value={this.state.body}
-                  className="textarea input-group__item"
-                  placeholder="Post Body"
-                  />
+               />
+               <BlockStyleControls
+                  editorState={editorState}
+                  onToggle={this.toggleBlockType}
+               />
+               <InlineStyleControls
+                  editorState={editorState}
+                  onToggle={this.toggleInlineStyle}
+               />
+               <div onClick={this.focus}>
+                  <Editor
+                     blockStyleFn={this.getBlockStyle}
+                     editorState={this.state.editorState}
+                     onChange={this.setBody}
+                     handleReturn={this.handleReturn}
+                     ref="editor"
+               />               
+               </div>
                <div>
                   <button className="button button--standard">Submit</button>              
                </div>

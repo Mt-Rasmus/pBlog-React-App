@@ -6,13 +6,24 @@
    font-size: $font-size-large;
    font-weight: 300;
    padding: $s-size;
+   margin-bottom: $xs-size;
 }
 
 .select {
    @extend .text-input; /* Inheriting all properties of .text-input */
 }
 
-.textarea {
+div.DraftEditor-root {
    @extend .text-input;
-   height: 10rem;
+   overflow: auto;
+   height: 18rem;
+   margin: $xxs-size $s-size 0 0;
+   padding: $l-size $l-size;
+   word-break: break-word;
+   font-size: $font-size-medium;
+   //cursor: text;
+   @media (min-width: $desktop-breakpoint){ /* For desktop */
+      height: 40rem;
+      margin: 0 $s-size $xs-size 0;
+   }
 }

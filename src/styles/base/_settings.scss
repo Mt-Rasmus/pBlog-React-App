@@ -3,6 +3,7 @@
 $dark-grey: #333333;
 $medium-grey: #666;
 $grey: #888888;
+$light-grey: #dbdbdb;
 $blue: rgb(44, 145, 212);
 $light-teal: rgb(60, 201, 236);
 $medium-teal: rgb(40, 160, 190);
@@ -10,6 +11,7 @@ $dark-blue: #394555;
 $off-white: #f7f7f7;
 
 // Font Size
+$font-size-xxl: 3.2rem;
 $font-size-xl: 2.4rem;
 $font-size-large: 1.8rem;
 $font-size-medium: 1.4rem;
@@ -17,11 +19,10 @@ $font-size-small: 1.3rem;
 $font-size-xs: 0.4rem;
 
 // Spacing
+$xxs-size: 0.4rem;
+$xs-size: 0.8rem;
 $s-size: 1.2rem;
 $m-size: 1.6rem;
 $l-size: 3.2rem;
 $xl-size: 4.8rem;
 $desktop-breakpoint: 45rem;
-
-// HEX:
-// #3cc9ec

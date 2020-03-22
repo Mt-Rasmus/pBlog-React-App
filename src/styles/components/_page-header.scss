@@ -1,7 +1,11 @@
 
 .page-header {
-   margin-bottom: $font-size-xs;
+   margin: $s-size 0 $xxs-size 0;
    color: $dark-grey;
+}
+
+.page-header-add {
+   margin-top: $m-size;
 }
 
 .page-header__actions {

@@ -15,7 +15,7 @@ const PostList = (props) => {
             </div>
          ) : (
          <div className="list-body">
-            <h2 className="list-body__headline">Blog Posts</h2>
+            <h2 className="list-body__headline page-header">Blog Posts</h2>
          {
             props.posts.map((post) => {
                return <PostListItem key={post.id} post={post} />
