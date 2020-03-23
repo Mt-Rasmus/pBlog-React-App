@@ -36,11 +36,10 @@ class ReadPostPage extends React.Component {
             )            
          }
          else {
-            const adjustedHTMLstring = this.state.externalData.body.replace("<p></p>", "</br>");
             return (
                <div className="content-container">
                   <h1 className="headline-container">{this.state.externalData.title}</h1>
-                  <div className="read-page-container" dangerouslySetInnerHTML={{ __html: adjustedHTMLstring }}></div>
+                  <div className="read-page-container" dangerouslySetInnerHTML={{ __html: this.state.externalData.body.split('<p></p>').join('</br>') }}></div>
                   <div className="list-item__sub read-page-container"> 
                      <p className="list-item__sub-text"> Last Edited: </p>
                      <p>
