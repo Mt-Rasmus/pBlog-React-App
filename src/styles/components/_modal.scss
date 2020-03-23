@@ -1,0 +1,46 @@
+// "Re"-styling the React Modal.
+// Look in the inspector to see these different classes
+
+.ReactModalPortal > div { // The main class of React Modal. > sign targets direct decendant divs
+   opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   transition: opacity 200ms ease-in-out;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+   opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close { // Used along with closeTimeoutMS prop in OptionModal.js
+   opacity: 0;
+}
+
+.ReactModal__Content .ReactModal__Content--after-open {
+   max-width: 30rem;
+}
+
+.modal {
+   background: $grey;
+   color: white;
+   max-width: 30rem;
+   outline: none;
+   padding: $l-size;
+   text-align: center;
+   border-radius: 3px;
+}
+
+.modal__title {
+   margin: 0 0 $m-size;
+}
+
+.modal__body {
+   font-size: 2rem;
+   font-weight: 300;
+   margin: 0 0 $l-size;
+   word-break: break-all;
+}

@@ -3,10 +3,10 @@ import React from 'react';
 import moment from 'moment';
 import BlockStyleControls from './BlockStyleControls';
 import InlineStyleControls from './InlineStyleControls';
+import MessageModal from './MessageModal';
 import {Editor, EditorState, ContentState, RichUtils} from 'draft-js';
 import { convertToHTML } from 'draft-convert';
 import htmlToDraft from 'html-to-draftjs';
-
 
 export default class PostForm extends React.Component {
    // local component state:
@@ -18,7 +18,12 @@ export default class PostForm extends React.Component {
          body: props.post ? props.post.body : '',
          postTime: props.post ? moment(props.post.postTime) : moment(),
          error: '',
-         editorState: EditorState.createEmpty()
+         editorState: EditorState.createEmpty(),
+         showMessageModal: false,
+         origContent: {
+            title: props.post ? props.post.title : '',
+            body: props.post ? props.post.body : ''            
+         }
       }
    }
 
@@ -39,7 +44,7 @@ export default class PostForm extends React.Component {
       const { contentBlocks, entityMap } = blocksFromHtml;
       const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
       const editorState = EditorState.createWithContent(contentState);
-      this.setState({ editorState });
+      this.setState({ editorState, origContent: {title: this.state.title, body: this.state.body} });
    }
 
    onSubmit = (e) => {
@@ -86,6 +91,18 @@ export default class PostForm extends React.Component {
       }
    }
 
+   handleShowMessageModal = () => {
+      window.location.pathname.split('/')[1] == 'edit' &&
+      (this.state.origContent.title !== this.state.title ||
+      this.state.origContent.body !== this.state.body) &&
+      this.setState({ showMessageModal: true });
+      this.setState({ origContent: {title: this.state.title, body: this.state.body} });
+   }  
+
+   handleCloseMessageModal = () => {
+      this.setState({ showMessageModal: false });
+   }
+
    render() {
       const {editorState} = this.state;
       return (
@@ -117,8 +134,12 @@ export default class PostForm extends React.Component {
                />               
                </div>
                <div>
-                  <button className="button button--standard">Submit</button>              
+                  <button onClick={this.handleShowMessageModal} className="button button--standard">Submit</button>              
                </div>
+               <MessageModal 
+                  showModal={this.state.showMessageModal} 
+                  handleCloseMessageModal={this.handleCloseMessageModal} 
+               />               
             </form>
          </div>   
       )

@@ -1,21 +1,35 @@
 
 import React from 'react';
 import PostForm from './PostForm';
+import DeletionModal from './DeletionModal';
 import { initDeletePost, initEditPost } from '../actions/posts';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Clipboard from 'react-clipboard.js';
 
 export class EditPostPage extends React.Component {
-   
+   constructor(props) {
+      super(props);
+      this.state = {
+         showDeletionModal: false
+       };
+   }
+
    onDelete = () => {
       this.props.initDeletePost(this.props.post);
       this.props.history.push('/');
    }
 
    onSubmit = (updates) => {
-      this.props.initEditPost(this.props.post,updates);
-      this.props.history.push('/');      
+      this.props.initEditPost(this.props.post,updates);   
+   }
+
+   handleShowDeletionModal = () => {
+      this.setState({ showDeletionModal: true });
+   }  
+
+   handleCloseDeletionModal = () => {
+      this.setState({ showDeletionModal: false });
    }
 
    render() {
@@ -46,7 +60,12 @@ export class EditPostPage extends React.Component {
 
             <h2 className="page-header">Edit post</h2>
             <PostForm post={this.props.post} onSubmit={this.onSubmit}/>
-            <button onClick={this.onDelete} className="button button--delete-post">Delete post</button>
+            <button onClick={this.handleShowDeletionModal} className="button button--delete-post">Delete post</button>
+            <DeletionModal 
+               showModal={this.state.showDeletionModal} 
+               handleCloseDeletionModal={this.handleCloseDeletionModal} 
+               onDelete={this.onDelete}
+            />            
          </div>
       )
    }
